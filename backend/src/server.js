@@ -23,8 +23,8 @@ app.use(cors());
 // Parse JSON request bodies
 app.use(express.json());
 
-// GET /api/health
-app.get('/api/health', (req, res) => {
+// GET /api/health and /health
+app.get(['/api/health', '/health'], (req, res) => {
   res.status(200).json({
     success: true,
     status: 'ok',
@@ -33,8 +33,8 @@ app.get('/api/health', (req, res) => {
 });
 
 // REST API routes
-app.use('/api/transactions', transactionRoutes);
-app.use('/api/budgets', budgetRoutes);
+app.use(['/api/transactions', '/transactions'], transactionRoutes);
+app.use(['/api/budgets', '/budgets'], budgetRoutes);
 
 // Catch unknown /api routes and return 404 JSON
 app.use('/api', notFoundHandler);
